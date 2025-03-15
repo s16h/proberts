@@ -10,7 +10,7 @@ const openai = new OpenAI({
 async function isImmigrationRelated(message: string): Promise<boolean> {
   try {
     const response = await openai.chat.completions.create({
-      model: 'gpt-3.5-turbo',
+      model: 'gpt-4o-mini',
       messages: [
         {
           role: 'system',
@@ -77,8 +77,8 @@ export default async function handler(
     });
 
     // In production, this would use the fine-tuned model ID
-    // For development, we'll use a standard model
-    const modelId = process.env.OPENAI_MODEL_ID || 'gpt-3.5-turbo';
+    // For development, we'll use GPT-4o mini
+    const modelId = process.env.OPENAI_MODEL_ID || 'gpt-4o-mini';
 
     const completion = await openai.chat.completions.create({
       model: modelId,

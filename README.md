@@ -5,8 +5,10 @@ A chatbot that simulates Peter Roberts (YC's immigration attorney) answering imm
 ## Features
 
 - Chat interface for asking immigration questions
-- Uses a fine-tuned OpenAI model trained on Peter Roberts' HN AMA responses
-- Provides informative answers based on historical AMA data
+- Uses GPT-4o mini by default, with option to use a fine-tuned model
+- Filters out non-immigration related questions
+- Provides informative answers based on Peter Roberts' style and expertise
+- Trained on historical HN AMA responses when using the fine-tuned model
 
 ## Getting Started
 
@@ -32,7 +34,8 @@ A chatbot that simulates Peter Roberts (YC's immigration attorney) answering imm
 3. Create a `.env.local` file in the root directory with your OpenAI API key
    ```
    OPENAI_API_KEY=your_openai_api_key_here
-   # Add your fine-tuned model ID after training
+   # Uses gpt-4o-mini by default if no fine-tuned model is specified
+   # After fine-tuning, uncomment and add your fine-tuned model ID:
    # OPENAI_MODEL_ID=your_fine_tuned_model_id
    ```
 
