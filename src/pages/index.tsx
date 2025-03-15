@@ -80,12 +80,18 @@ export default function Home() {
     }
     
     try {
+      // Create a new array with all previous messages plus the new user message
+      const updatedMessages = [...messages, userMessage];
+      
       const response = await fetch('/api/chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ message: input, messages: messages }),
+        body: JSON.stringify({ 
+          message: input, 
+          messages: updatedMessages 
+        }),
       });
       
       if (!response.ok) {
