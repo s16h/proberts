@@ -84,6 +84,17 @@ This application is designed to be deployed on [Vercel](https://vercel.com/).
 
 This application is for informational purposes only and does not provide legal advice. The responses are based on Peter Roberts' public HN AMA answers but may not be suitable for your specific situation. Always consult with a qualified immigration attorney for legal advice.
 
+## Development with Claude Code
+
+This project has been "vibe coded" with [Claude Code](https://claude.ai/code). Zero lines of code have been written by a human. Claude Code helped:
+
+- Generate the chat interface components
+- Create the fine-tuning data processing scripts
+- Debug TypeScript errors
+- Build the API endpoint logic
+- Implement the prompt engineering for accurate Peter Roberts-style responses
+- Structure the data collection pipeline
+
 ## License
 
 MIT
