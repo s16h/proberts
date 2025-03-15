@@ -6,21 +6,38 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
-// Function to check if a message is immigration-related
-async function isImmigrationRelated(message: string): Promise<boolean> {
+// Function to check if a message is immigration-related, taking chat context into account
+async function isImmigrationRelated(message: string, previousMessages: any[] = []): Promise<boolean> {
   try {
+    // Format previous messages for context
+    const formattedPreviousMessages = previousMessages.map(msg => ({
+      role: msg.role,
+      content: msg.content
+    }));
+    
+    // Create classifier messages with context
+    const classifierMessages = [
+      {
+        role: 'system',
+        content: 'You are a classifier that determines if a question is related to immigration law, visas, citizenship, green cards, work permits, or other immigration topics. Consider the full conversation context when making your determination. Respond with only "yes" or "no".'
+      },
+      // Add previous messages for context if available
+      ...formattedPreviousMessages,
+      // Add the new message to classify
+      {
+        role: 'user',
+        content: message
+      },
+      // Add final classification request
+      {
+        role: 'system',
+        content: 'Based on the conversation context and the last message, is this discussion related to immigration? Answer only yes or no.'
+      }
+    ];
+
     const response = await openai.chat.completions.create({
       model: 'gpt-4o-mini-2024-07-18',
-      messages: [
-        {
-          role: 'system',
-          content: 'You are a classifier that determines if a question is related to immigration law, visas, citizenship, green cards, work permits, or other immigration topics. Respond with only "yes" or "no".'
-        },
-        {
-          role: 'user',
-          content: `Is this question related to immigration? "${message}"`
-        }
-      ],
+      messages: classifierMessages,
       temperature: 0,
       max_tokens: 5
     });
@@ -49,8 +66,10 @@ export default async function handler(
       return res.status(400).json({ error: 'Message is required' });
     }
 
-    // Check if the message is immigration-related
-    const immigrationRelated = await isImmigrationRelated(message);
+    // Check if the message is immigration-related, including previous conversation context
+    // Use all messages except the latest one as context
+    const previousMessages = messages.length > 0 ? messages.slice(0, -1) : [];
+    const immigrationRelated = await isImmigrationRelated(message, previousMessages);
     
     if (!immigrationRelated) {
       return res.status(200).json({ 
@@ -64,17 +83,13 @@ export default async function handler(
       content: msg.content,
     }));
 
-    // Add the system message to explain the assistant's role
+    // Add the system message to explain the assistant's role and enforce context usage
     formattedMessages.unshift({
       role: 'system',
-      content: 'You are Peter Roberts, an immigration attorney who has done AMAs on Hacker News. Answer immigration-related questions based on your expertise. If you are unsure or if the question requires specific legal advice based on individual circumstances, make it clear that your response is for informational purposes only and suggest consulting with an immigration attorney. Always be helpful, accurate, and ethical in your responses. DO NOT answer questions that are not related to immigration law.'
+      content: 'You are Peter Roberts, an immigration attorney who has done AMAs on Hacker News. Answer immigration-related questions based on your expertise. If you are unsure or if the question requires specific legal advice based on individual circumstances, make it clear that your response is for informational purposes only and suggest consulting with an immigration attorney. Always be helpful, accurate, and ethical in your responses. DO NOT answer questions that are not related to immigration law. IMPORTANT: Always read and reference the chat history to maintain context and provide consistent answers. If the user refers to previous questions or your previous answers, make sure to acknowledge and build upon that context in your response.'
     });
 
-    // Add the latest user message
-    formattedMessages.push({
-      role: 'user',
-      content: message,
-    });
+    // The latest user message is already included in the formattedMessages from the client
 
     // In production, this would use the fine-tuned model ID
     // For development, we'll use GPT-4o mini
