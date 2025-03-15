@@ -187,7 +187,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className={`border-t ${isDarkMode ? 'border-dark-700' : 'border-gray-100'} p-4`}>
+          <div className={`border-t ${isDarkMode ? 'border-dark-700' : 'border-gray-100'} p-3 md:p-4`}>
             <form onSubmit={handleSubmit} className="flex items-end gap-2">
               <div className="relative flex-1">
                 <textarea
@@ -196,21 +196,24 @@ export default function Home() {
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={handleKeyDown}
                   placeholder="Ask a question about US immigration..."
-                  className={`w-full p-4 pr-12 text-sm md:text-base resize-none overflow-hidden min-h-[50px] max-h-[200px] rounded-xl border ${isDarkMode ? 'border-dark-600 bg-dark-700 text-white' : 'border-gray-200 bg-white text-gray-900'} shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:outline-none notransition`}
+                  className={`w-full py-3 px-4 pr-11 text-sm md:text-base resize-none overflow-hidden min-h-[42px] max-h-[200px] rounded-xl border ${isDarkMode ? 'border-dark-600 bg-dark-700 text-white' : 'border-gray-200 bg-white text-gray-900'} shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:outline-none notransition`}
                   disabled={isLoading}
                   rows={1}
                 />
-                {!isLoading && input.trim() !== '' && (
-                  <motion.button
-                    whileTap={{ scale: 0.95 }}
-                    type="submit"
-                    className={`absolute right-3 bottom-3 p-1 ${isDarkMode ? 'text-indigo-400 hover:text-indigo-300' : 'text-indigo-600 hover:text-indigo-700'}`}
-                  >
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-                    </svg>
-                  </motion.button>
-                )}
+                <motion.button
+                  whileTap={input.trim() !== '' ? { scale: 0.95 } : {}}
+                  type="submit"
+                  disabled={isLoading || input.trim() === ''}
+                  className={`absolute right-3.5 top-1/2 -translate-y-1/2 p-1 rounded-full transition-opacity ${
+                    input.trim() === '' 
+                      ? `opacity-40 ${isDarkMode ? 'bg-gray-600 text-gray-400' : 'bg-gray-300 text-gray-500'}`
+                      : `${isDarkMode ? 'bg-indigo-600 text-white hover:bg-indigo-500' : 'bg-indigo-500 text-white hover:bg-indigo-600'}`
+                  }`}
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
+                  </svg>
+                </motion.button>
               </div>
             </form>
           </div>

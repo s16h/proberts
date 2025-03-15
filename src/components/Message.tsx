@@ -36,12 +36,12 @@ export const Message: React.FC<MessageProps> = ({ content, isUser }) => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
       className={`
-        p-4 mb-4 flex flex-col 
+        p-2 mb-2 flex flex-col 
         ${isUser ? 'items-end' : 'items-start'}
       `}
     >
       <div className={`
-        max-w-[85%] p-4 rounded-xl shadow-sm
+        max-w-[85%] p-3 rounded-xl shadow-sm
         ${isUser 
           ? 'bg-indigo-600 text-white rounded-tr-none' 
           : 'bg-white border border-gray-100 rounded-tl-none dark:bg-dark-800 dark:border-dark-700 dark:text-white'
@@ -52,7 +52,7 @@ export const Message: React.FC<MessageProps> = ({ content, isUser }) => {
             rehypePlugins={[rehypeSanitize]}
             remarkPlugins={[remarkGfm]}
             components={{
-              p: ({ node, ...props }) => <p className="mb-4 last:mb-0" {...props} />,
+              p: ({ node, ...props }) => <p className="mb-2 last:mb-0" {...props} />,
               a: ({ node, ...props }) => (
                 <a 
                   className={`underline ${isUser ? 'text-white/90 hover:text-white' : 'text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300'}`}
@@ -61,12 +61,12 @@ export const Message: React.FC<MessageProps> = ({ content, isUser }) => {
                   {...props}
                 />
               ),
-              ul: ({ node, ...props }) => <ul className="list-disc pl-6 mb-4" {...props} />,
-              ol: ({ node, ...props }) => <ol className="list-decimal pl-6 mb-4" {...props} />,
+              ul: ({ node, ...props }) => <ul className="list-disc pl-5 mb-2" {...props} />,
+              ol: ({ node, ...props }) => <ol className="list-decimal pl-5 mb-2" {...props} />,
               li: ({ node, ...props }) => <li className="mb-1" {...props} />,
-              h1: ({ node, ...props }) => <h1 className="text-xl font-bold mb-2 mt-4" {...props} />,
-              h2: ({ node, ...props }) => <h2 className="text-lg font-bold mb-2 mt-3" {...props} />,
-              h3: ({ node, ...props }) => <h3 className="text-md font-bold mb-2 mt-3" {...props} />,
+              h1: ({ node, ...props }) => <h1 className="text-xl font-bold mb-2 mt-3" {...props} />,
+              h2: ({ node, ...props }) => <h2 className="text-lg font-bold mb-2 mt-2" {...props} />,
+              h3: ({ node, ...props }) => <h3 className="text-md font-bold mb-2 mt-2" {...props} />,
               code: ({ node, inline, className, children, ...props }) => {
                 const match = /language-(\w+)/.exec(className || '');
                 return !inline && match ? (
@@ -77,7 +77,7 @@ export const Message: React.FC<MessageProps> = ({ content, isUser }) => {
                     className="rounded-md my-2 text-sm"
                     showLineNumbers={true}
                     customStyle={{
-                      margin: '1em 0',
+                      margin: '0.5em 0',
                       borderRadius: '0.375rem', 
                       background: isUser ? 'rgba(67, 56, 202, 0.3)' : undefined
                     }}
@@ -97,7 +97,7 @@ export const Message: React.FC<MessageProps> = ({ content, isUser }) => {
               pre: ({ node, children, ...props }) => <pre className="my-2 rounded-md overflow-auto" {...props}>{children}</pre>,
               blockquote: ({ node, ...props }) => (
                 <blockquote 
-                  className={`border-l-4 pl-4 py-1 mb-4 ${isUser ? 'border-white/30' : 'border-gray-300 dark:border-gray-600'}`}
+                  className={`border-l-4 pl-3 py-1 mb-2 ${isUser ? 'border-white/30' : 'border-gray-300 dark:border-gray-600'}`}
                   {...props} 
                 />
               ),
