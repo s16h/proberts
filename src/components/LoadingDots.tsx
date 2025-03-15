@@ -4,7 +4,10 @@ import { motion } from 'framer-motion';
 export const LoadingDots: React.FC = () => {
   return (
     <div className="p-2 mb-2 flex items-start">
-      <div className="bg-white border border-gray-100 p-3 rounded-xl rounded-tl-none shadow-sm dark:bg-dark-800 dark:border-dark-700">
+      <div className="bg-white border border-gray-100 p-3 rounded-xl rounded-tl-none shadow-sm dark:bg-dark-800 dark:border-dark-700 relative">
+        <div className="absolute -top-2 -left-1 bg-indigo-100 dark:bg-indigo-900/40 rounded px-1.5 py-0.5 text-[10px] font-medium text-indigo-800 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800">
+          AI
+        </div>
         <motion.div 
           className="flex space-x-2 h-6 items-center"
           initial={{ opacity: 0.5 }}

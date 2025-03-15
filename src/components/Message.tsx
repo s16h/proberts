@@ -46,7 +46,13 @@ export const Message: React.FC<MessageProps> = ({ content, isUser }) => {
           ? 'bg-indigo-600 text-white rounded-tr-none' 
           : 'bg-white border border-gray-100 rounded-tl-none dark:bg-dark-800 dark:border-dark-700 dark:text-white'
         }
+        relative
       `}>
+        {!isUser && (
+          <div className="absolute -top-2 -left-1 bg-indigo-100 dark:bg-indigo-900/40 rounded px-1.5 py-0.5 text-[10px] font-medium text-indigo-800 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800">
+            AI
+          </div>
+        )}
         <div className="text-sm md:text-base leading-relaxed markdown-body">
           <ReactMarkdown
             rehypePlugins={[rehypeSanitize]}
