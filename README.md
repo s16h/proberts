@@ -46,11 +46,11 @@ A chatbot that simulates Peter Roberts (YC's immigration attorney) answering imm
    node scripts/scrape-amas.js
    ```
 
-2. Fine-tune GPT-4o mini with the collected data
+2. Fine-tune the model with the collected data
    ```
    node scripts/fine-tune.js
    ```
-   Note: This process uses GPT-4o mini as the base model for fine-tuning
+   Note: This process uses the specific GPT-4o mini version (gpt-4o-mini-2024-07-18) for fine-tuning
 
 3. Check the status of your fine-tuning job
    ```

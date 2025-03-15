@@ -45,7 +45,7 @@ async function createFineTuningJob(fileId) {
   try {
     const fineTuningJob = await openai.fineTuning.jobs.create({
       training_file: fileId,
-      model: 'gpt-4o-mini',
+      model: 'gpt-4o-mini-2024-07-18',
       hyperparameters: {
         n_epochs: 3,
       },
