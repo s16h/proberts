@@ -36,7 +36,7 @@ export const ThemeToggle: React.FC = () => {
     <motion.button
       whileTap={{ scale: 0.9 }}
       onClick={toggleTheme}
-      className="p-1 rounded-full border border-gray-200 dark:border-dark-600 bg-transparent text-gray-500 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 focus:outline-none"
+      className="p-1 rounded-full border border-gray-200 dark:border-dark-600 bg-transparent text-gray-500 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 focus:outline-none cursor-default"
       aria-label={isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'}
     >
       {isDarkMode ? (

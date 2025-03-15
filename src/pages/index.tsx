@@ -144,7 +144,7 @@ export default function Home() {
               <span className={`${isDarkMode ? 'text-indigo-400' : 'text-indigo-600'}`}>Peter Roberts</span> Immigration Assistant
             </h1>
             <p className={`text-sm md:text-base max-w-md text-center ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
-              Ask immigration questions and get responses based on Peter Roberts' expertise
+              Ask immigration questions and get AI-generated responses based on Peter Roberts' past answers
             </p>
           </div>
         </header>
@@ -168,7 +168,10 @@ export default function Home() {
                     Ask an immigration question
                   </h2>
                   <p className={`text-center max-w-md ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
-                    Get insights on visas, green cards, citizenship, and other immigration topics
+                    Get AI-generated insights on visas, green cards, citizenship, and other immigration topics
+                  </p>
+                  <p className={`mt-2 text-center text-xs max-w-md ${isDarkMode ? 'text-gray-500' : 'text-gray-400'}`}>
+                    Powered by AI fine-tuned on Peter Roberts' Hacker News immigration AMAs
                   </p>
                 </motion.div>
               ) : (
@@ -196,7 +199,7 @@ export default function Home() {
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={handleKeyDown}
                   placeholder="Ask a question about US immigration..."
-                  className={`w-full py-3 px-4 pr-11 text-sm md:text-base resize-none overflow-hidden min-h-[42px] max-h-[200px] rounded-xl border ${isDarkMode ? 'border-dark-600 bg-dark-700 text-white' : 'border-gray-200 bg-white text-gray-900'} shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:outline-none notransition`}
+                  className={`w-full py-3 px-4 pr-11 text-sm md:text-base resize-none overflow-hidden min-h-[42px] max-h-[200px] rounded-xl border transition-colors duration-150 ${isDarkMode ? 'border-dark-600 bg-dark-700 text-white hover:border-indigo-700 focus:border-indigo-500' : 'border-gray-200 bg-white text-gray-900 hover:border-indigo-300 focus:border-indigo-500'} shadow-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none notransition`}
                   disabled={isLoading}
                   rows={1}
                 />
@@ -204,7 +207,7 @@ export default function Home() {
                   whileTap={input.trim() !== '' ? { scale: 0.95 } : {}}
                   type="submit"
                   disabled={isLoading || input.trim() === ''}
-                  className={`absolute right-3.5 top-1/2 -translate-y-1/2 p-1 rounded-full transition-opacity ${
+                  className={`absolute right-3.5 top-1/2 -translate-y-1/2 p-1 rounded-full transition-opacity cursor-default ${
                     input.trim() === '' 
                       ? `opacity-40 ${isDarkMode ? 'bg-gray-600 text-gray-400' : 'bg-gray-300 text-gray-500'}`
                       : `${isDarkMode ? 'bg-indigo-600 text-white hover:bg-indigo-500' : 'bg-indigo-500 text-white hover:bg-indigo-600'}`
@@ -222,7 +225,12 @@ export default function Home() {
         <footer className="mt-6 flex flex-col items-center gap-3">
           <ThemeToggle />
           <div className="text-center text-xs text-gray-400 dark:text-gray-500">
-            <p>Powered by OpenAI • For informational purposes only • Not legal advice</p>
+            <p>
+              For informational purposes only • Not legal advice
+            </p>
+            <p className="mt-1 text-xs">
+              Fine-tuned OpenAI GPT-4o mini on Peter Roberts' past responses from Hacker News AMAs
+            </p>
           </div>
         </footer>
       </motion.div>
