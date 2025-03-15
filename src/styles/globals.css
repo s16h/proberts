@@ -1,3 +1,124 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  /* No transitions for theme changes - instant switching */
+  html {
+    -webkit-font-smoothing: antialiased;
+  }
+  
+  /* Only animate non-color properties */
+  *:not([class*="transition"]) {
+    transition: none !important;
+  }
+  
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  /* Custom scrollbar */
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: #D1D5DB;
+    border-radius: 2px;
+  }
+
+  .dark .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: #4B5563;
+  }
+
+  /* Text selection */
+  ::selection {
+    background-color: rgba(99, 102, 241, 0.2);
+  }
+
+  /* Focus ring */
+  *:focus-visible {
+    outline: 2px solid theme('colors.indigo.500');
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  /* Message animations */
+  .message-enter {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  
+  .message-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 300ms, transform 300ms;
+  }
+  
+  .message-exit {
+    opacity: 1;
+  }
+  
+  .message-exit-active {
+    opacity: 0;
+    transition: opacity 200ms;
+  }
+
+  /* Markdown styles */
+  .markdown-body {
+    overflow-wrap: break-word;
+  }
+
+  .markdown-body pre {
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    font-size: 0.85em;
+  }
+
+  .markdown-body code {
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  }
+
+  .markdown-body table {
+    width: 100%;
+    margin-bottom: 1rem;
+    overflow: auto;
+    border-collapse: collapse;
+  }
+
+  .markdown-body table th,
+  .markdown-body table td {
+    padding: 0.5rem;
+    border: 1px solid #e5e7eb;
+  }
+
+  .markdown-body table th {
+    background-color: #f9fafb;
+    font-weight: 600;
+  }
+
+  .dark .markdown-body table th {
+    background-color: #222222;
+  }
+
+  .dark .markdown-body table td,
+  .dark .markdown-body table th {
+    border-color: #333333;
+  }
+
+  /* Horizontal rule */
+  .markdown-body hr {
+    height: 1px;
+    background-color: #e5e7eb;
+    border: none;
+    margin: 1.5rem 0;
+  }
+
+  .dark .markdown-body hr {
+    background-color: #333333;
+  }
+}
