@@ -1,0 +1,56 @@
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# local env files
+.env*.local
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# data
+/data/raw_amas.json
+/data/processed_data.jsonl
+/data/fine_tuning_job.json
+
+# IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# logs
+logs
+*.log
+
+# package managers
+npm-shrinkwrap.json
+yarn.lock
+.yarnrc
+.pnp.*
+.yarn/
+package-lock.json
