@@ -32,10 +32,7 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# data
-/data/raw_amas.json
-/data/processed_data.jsonl
-/data/fine_tuning_job.json
+# No longer ignoring data directory files
 
 # IDE files
 .idea/
