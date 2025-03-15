@@ -170,9 +170,6 @@ export default function Home() {
                   <p className={`text-center max-w-md ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
                     Get AI-generated insights on visas, green cards, citizenship, and other immigration topics
                   </p>
-                  <p className={`mt-2 text-center text-xs max-w-md ${isDarkMode ? 'text-gray-500' : 'text-gray-400'}`}>
-                    Powered by AI fine-tuned on Peter Roberts' Hacker News immigration AMAs
-                  </p>
                 </motion.div>
               ) : (
                 <div>
