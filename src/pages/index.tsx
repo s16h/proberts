@@ -228,6 +228,9 @@ export default function Home() {
             <p className="mt-1 text-xs">
               Fine-tuned OpenAI GPT-4o mini on Peter Roberts' past responses from Hacker News AMAs
             </p>
+            <p className="mt-2 text-xs">
+              Made by <a href="https://x.com/s16h_" target="_blank" rel="noopener noreferrer" className="text-indigo-500 hover:text-indigo-600 dark:text-indigo-400 dark:hover:text-indigo-300 transition-colors">@s16h_</a>
+            </p>
           </div>
         </footer>
       </motion.div>

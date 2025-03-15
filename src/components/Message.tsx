@@ -72,8 +72,9 @@ export const Message: React.FC<MessageProps> = ({ content, isUser }) => {
               h1: ({ node, ...props }) => <h1 className="text-xl font-bold mb-2 mt-3" {...props} />,
               h2: ({ node, ...props }) => <h2 className="text-lg font-bold mb-2 mt-2" {...props} />,
               h3: ({ node, ...props }) => <h3 className="text-md font-bold mb-2 mt-2" {...props} />,
-              code: ({ node, inline, className, children, ...props }) => {
+              code: ({ node, className, children, ...props }: any) => {
                 const match = /language-(\w+)/.exec(className || '');
+                const inline = props.inline || false;
                 return !inline && match ? (
                   <SyntaxHighlighter
                     style={isUser ? oneDark : (isDarkMode ? oneDark : oneLight)}
@@ -92,7 +93,7 @@ export const Message: React.FC<MessageProps> = ({ content, isUser }) => {
                   </SyntaxHighlighter>
                 ) : (
                   <code 
-                    className={`${className} ${inline ? `px-1 py-0.5 rounded ${isUser ? 'bg-indigo-700/40' : `bg-gray-100 ${isDarkMode ? 'dark:bg-dark-600' : ''}`}` : ''}`}
+                    className={`${className} ${props.inline ? `px-1 py-0.5 rounded ${isUser ? 'bg-indigo-700/40' : `bg-gray-100 ${isDarkMode ? 'dark:bg-dark-600' : ''}`}` : ''}`}
                     {...props}
                   >
                     {children}
