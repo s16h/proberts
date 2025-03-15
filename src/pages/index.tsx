@@ -230,6 +230,8 @@ export default function Home() {
             </p>
             <p className="mt-2 text-xs">
               Made by <a href="https://x.com/s16h_" target="_blank" rel="noopener noreferrer" className="text-indigo-500 hover:text-indigo-600 dark:text-indigo-400 dark:hover:text-indigo-300 transition-colors">@s16h_</a>
+              {' • '}
+              <a href="https://github.com/s16h/proberts" target="_blank" rel="noopener noreferrer" className="text-indigo-500 hover:text-indigo-600 dark:text-indigo-400 dark:hover:text-indigo-300 transition-colors">GitHub</a>
             </p>
           </div>
         </footer>
